@@ -1,0 +1,81 @@
+{% extends 'EB/base.html' %}
+
+{% block title %}Eldorado Brougham | Part 2{% endblock %}
+
+{% block content %}
+
+<div class="row">
+    <ul class="breadcrumb">
+        <li><a href="/">Home</a></li>
+        <li><a href="/{{chapterheading.superchapterid.superchapterid.chaptername|slugify}}">{{ chapterheading.superchapterid.superchapterid.chaptername }}</a></li>
+        <li><a href="/{{chapterheading.superchapterid.superchapterid.chaptername|slugify}}/{{chapterheading.superchapterid.chaptername|slugify}}">{{ chapterheading.superchapterid.chaptername }}</a></li>
+        <li><a class="active">{{ chapterheading.chaptername }}</a></li>
+    </ul>
+</div>
+
+<div class = "row">
+  <div class = "col-lg-6 col-md-6 col-sm-6 col-xs-12 myscrolldiv">
+    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel" style = "height: 600px">
+      <!-- Indicators -->
+      <ol class="carousel-indicators" style = "top:83%">
+        {% for sectionimage in sectionimages %}
+        {% if forloop.first %}
+        <li data-target="#carousel-example-generic" data-slide-to="{{ forloop.counter0 }}" class="active"></li>
+        {% else %}
+        <li data-target="#carousel-example-generic" data-slide-to="{{ forloop.counter0 }} "></li>
+        {% endif %}
+        {% endfor %}
+      </ol>
+
+      <!-- Wrapper for slides -->
+      <div class="carousel-inner" style = "height: 550px">
+        {% for sectionimage in sectionimages %}
+        {% if forloop.first %}
+        <div class="item active" style = "height: 530px; top: 20%">
+          <img src="/static/img/historicalimgs/{{sectionimage.imageurl}}">
+          <div class="carousel-caption" style="top:50%">
+            <h5 class="custom-caption">{{sectionimage.imagecaption}}</h5>
+          </div>
+        </div>
+        {% else %}
+        <div class="item" style = "height: 530px; top: 20%">
+          <img src="/static/img/historicalimgs/{{sectionimage.imageurl}}">
+          <div class="carousel-caption" style="top:50%">
+            <h5 class="custom-caption">{{sectionimage.imagecaption}}</h5>
+          </div>
+        </div>
+        {% endif %}
+        {% endfor %}
+      </div>
+
+      <!-- Controls -->
+      <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left"></span>
+      </a>
+      <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right"></span>
+      </a>
+    </div> <!-- Carousel -->
+  </div>
+  
+  <div class = "col-lg-6 col-md-6 col-sm-6 col-xs-12 myscrolldiv">
+    <p class="text-justify">{{section.sectiontext}}</p>
+  </div>
+</div>
+<br>
+<div class="row">
+  <div class = "col-lg-2 col-xs-6">
+        {% if section.sectionorder != 1 %}
+        <a href = "{{section.sectionorder|add:"-1"}}" class="btn btn-primary" type="button">Previous</a>
+        {% endif %}
+  </div>
+  <div class = "col-lg-2 col-lg-push-8 col-xs-6">
+        {% if section.sectionorder != totsectionnum %}
+        <a href = "{{section.sectionorder|add:"1"}}" class="btn btn-primary" type="button">Continue Reading</a>
+        {% endif %}
+  </div>
+</div>
+
+
+
+{% endblock %}

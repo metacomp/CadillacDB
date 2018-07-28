@@ -1,0 +1,298 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="google-site-verification" content="HsitsAvUbLjuba00-JlCIh_5556GzKua-2iW8pvustI" />
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css" />
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="/static/css/bootstrap-theme.min.css" />
+    <!-- custom css -->
+    <link rel="stylesheet" href="/static/css/main.css" />
+    <link rel="stylesheet" href="/static/css/disclaimer.css" />
+<!--    <link href='http://fonts.useso.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'> -->
+
+    <title>{% block title %}{% endblock %}</title>
+    {% block head_favicon %}
+       <link rel="apple-touch-icon" sizes="180x180" href="/static/img/apple-touch-icon.png" />
+       <link rel="icon" type="image/png" href="/static/img/favicon-32x32.png" sizes="32x32" />
+       <link rel="icon" type="image/png" href="/static/img/favicon-16x16.png" sizes="16x16" />
+       <link rel="manifest" href="/static/img/manifest.json" />
+       <link rel="mask-icon" href="/static/img/safari-pinned-tab.svg" color="#5bbad5" />
+       <meta name="theme-color" content="#ffffff" />
+       <link rel="shortcut icon" href="/static/img/favicon.ico" type="image/x-icon" /> 
+<!--   <link rel="icon" type="image/png" href="/static/img/favicon.ico"> -->
+    {% endblock head_favicon %}
+
+    {% block extrahead %}
+    {% endblock %}
+
+    <!-- JavaScript jQuery files  -->
+    <script src="/static/js/jquery.min.js"></script>
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="/static/js/bootstrap.min.js"></script>
+    
+    <!-- Custom JavaScript -->
+    <script src="/static/js/custom.js"></script>
+
+    <!-- Flowtype jQuery
+    <script src="/static/js/jquery.flowtype.js"></script> -->
+
+     <!-- Elastic Book Cover -->
+    <script type="text/javascript">
+      function reflow() {
+        var photo = document.getElementById("cadillac-database-home");
+        photo.style.border = photo.style.border;
+      }
+      window.onload = reflow;
+    </script>
+
+    <!-- Bootstrap Modal Vertically Center / Max-Height -->
+    <script type="text/javascript">
+      function setModalMaxHeight(element) {
+        this.$element     = $(element);  
+        this.$content     = this.$element.find('.modal-content');
+        var borderWidth   = this.$content.outerHeight() - this.$content.innerHeight();
+        var dialogMargin  = $(window).width() < 768 ? 20 : 60;
+        var contentHeight = $(window).height() - (dialogMargin + borderWidth);
+        var headerHeight  = this.$element.find('.modal-header').outerHeight() || 0;
+        var footerHeight  = this.$element.find('.modal-footer').outerHeight() || 0;
+        var maxHeight     = contentHeight - (headerHeight + footerHeight);
+
+        this.$content.css({
+           'overflow': 'hidden'
+        });
+  
+        this.$element.find('.modal-body').css({
+           'max-height': maxHeight,
+           'overflow-y': 'auto'
+        });
+      }
+    </script>
+
+    <!-- Terms of Use jQuery -->
+    <script type="text/javascript">
+      function setCookie(cName,cValue,cExpireDays) {
+        var expDate=new Date();
+        expDate.setDate(expDate.getDate()+cExpireDays);
+        document.cookie=cName+ "=" +escape(cValue)+
+          ((cExpireDays==null) ? "" : ";expires="+expDate.toGMTString());
+      }
+      function getCookie(cName) {
+        if (document.cookie.length>0) {
+          cStart=document.cookie.indexOf(cName + "=");
+          if (cStart!=-1){
+            cStart=cStart + cName.length+1;
+            cEnd=document.cookie.indexOf(";",cStart);
+            if (cEnd==-1) cEnd=document.cookie.length;
+              return unescape(document.cookie.substring(cStart,cEnd));
+          }
+        }
+        return "";
+      }
+      function check() {
+        var allow = getCookie("modal-approved");
+        if (allow == "yes") {
+          $('#myModal').modal('hide');
+        }
+      }
+      function respond(answer) {
+        if (!answer) {
+          window.location = "http://www.newcadillacdatabase.org/static/CDB/test1.htm";
+        } else {
+          setCookie("modal-approved","yes",{ expires: 7, path: '/' });
+          $('#myModal').modal('hide');
+        }
+      }
+    </script>
+</head>
+
+<body>
+	<div id="fb-root"></div>
+	<script>(function(d, s, id) {
+	  var js, fjs = d.getElementsByTagName(s)[0];
+	  if (d.getElementById(id)) return;
+	  js = d.createElement(s); js.id = id;
+	  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5";
+	  fjs.parentNode.insertBefore(js, fjs);
+	}(document, 'script', 'facebook-jssdk'));</script>
+    {% block extracontent %}
+    {% endblock %}
+    <div class ="container">
+      <!-- Modal -->
+      <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header" style="text-align: center">
+              <h4 class="modal-title">Terms of Use</h4>
+            </div>
+            <div class="modal-body">
+              <p>By accessing any pages of The Cadillac Database© on the World Wide Web you agree to the following terms. You must not access these pages if you do not agree to all the following terms. The contents of The Cadillac Database© are in no way intended to form an 'official' view of any activities of any person, club, company or organization other than possibly the compiler himself. These pages are provided only as a means of disseminating to automobile historians and hobbyists general information on the history, styling and production of Cadillac automobiles from 1902-2003 and of La Salle automobiles from 1927 to 1940.
+            The bulk of the contents of The Cadillac Database are copyright© 1996-2012, Yann Saunders and The Museum & Research Center of the Cadillac & La Salle Club, Inc.
+            All rights are reserved.  Reproduction, transfer, distribution or storage of part or all of the contents in any form without the prior written permission of Yann Saunders or The Museum & Research Center of the Cadillac & La Salle Club, Inc., is prohibited except in accordance with the following - Yann Saunders and The Museum & Research Center of the Cadillac & La Salle Club, Inc .  consent to your storing on your computer or printing copies of extracts from these pages for your personal use only. Individual documents, photos and illustrations in The (new) Cadillac Database© Web pages may be subject to additional terms indicated in those documents.
+           All product or service names mentioned in a document on this server are trademarks of their respective companies, and are acknowledged as such.
+            All organization names mentioned in any document on this server, or the well-known abbreviations thereof, are trademarks of their respective organizations, and are acknowledged as such. Use of such names or abbreviations does not imply that the members and committees of those organizations in any way condone or agree with views and opinions stated in these Web pages.
+            Information on this server is provided as is without any warranty of any kind, either express or implied, including but not limited to, the implied warranties of merchantability, fitness for a particular purpose, or non-infringement.
+            The information herein may include technical inaccuracies or typographical errors. Changes may periodically be made to the information and will be incorporated in new and regular revisions of this publication. The compiler of The Cadillac Database©   and The Museum & Research Center of the Cadillac & La Salle Club, Inc .  may add to, modify or delete information in these Web pages at any time without notice.
+            The compiler of The Cadillac Database© and the Museum & Research Center of the Cadillac & La Salle Club, Inc . assume no responsibility for material created or published by third parties to which these World Wide Web pages are linked. By using this Website, you expressly relieve the Museum & Research Center of the Cadillac & La Salle Club, Inc . from any and all liability arising from your use of any third-party Websites linked to this one . By submitting material to any of our servers, for example by mail, fax or via World Wide Web pages, you agree to the following terms: (1) you make the material available knowing that it may be published, (2) you warrant that the material is fit for publication, (3) you agree to indemnify the compiler of The Cadillac Database © and the Museum & and Research Center of the Cadillac & La Salle Club, Inc . if any third party takes action against either of them in relation to the material you submit, (4) you agree not to take action against the compiler of The Cadillac Database© and the Museum & Research Center of the Cadillac & La Salle Club, Inc . if any third party takes action against either of them in relation to the material you submit, (5) by submitting material you warrant that you believe the compiler of The Cadillac Database© and the Museum & Research Center of the Cadillac & La Salle Club, Inc . may publish the material and incorporate it, or any concepts described in it, in their pages, without liability. </p>
+            </div>
+              <div class="modal-footer" style="text-align:left">
+<!--              <btn type="btn" class="button green" onclick="respond(true)"><img src="/static/img/tick.png">I Agree</btn> -->     
+              <a href="#" class="button green close" onclick="respond(true)"><img src="/static/img/tick.png">I Agree</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <nav class="navbar navbar-inverse">
+      <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">The Cadillac Database©<span class="sr-only">(current)</span></a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li><a href="/static/CDB/Dbas_txt/Intro.htm">About</a></li>
+            <li><a href="/static/CDB/Dbas_txt/updates.htm">Important Info</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Chapters <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="/static/CDB/Dbas_txt/Preface.htm">Preface</a></li>
+                <li><a href="/historical-information">Historical Information</a></li>
+                <li><a href="/survivors-registry">Survivors Registry</a></li>
+                <li><a href="/static/CDB/Dbas_txt/Phot_ndx.htm">Photo Pages</a></li>
+                <li><a href="/static/CDB/Dbas_txt/Lit_ndx.htm">Sales Literature</a></li>
+                <!--<li role="separator" class="divider"></li>
+                <li class="dropdown-header">Featured</li>-->
+                <li><a href="/static/CDB/Dbas_txt/lelaward.htm">Awards and Recognitions</a></li> 
+<!--            <li class="dropdown-submenu">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Test<span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="/static/CDB/Dbas_txt/Preface.htm">Test1</a></li>
+                    <li><a href="/static/CDB/Dbas_txt/lelaward.htm">Test2</a></li> 
+                  </ul>
+                </li> -->
+              </ul>
+            </li>
+          </ul>
+
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="/contact">Contact Us</a></li>
+            {% if user.username == "" %}
+            <li><a href="/login">Login</a></li>
+            {% else %}
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{user.username}}<span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="/logout">Logout</a></li>  
+              </ul>
+            </li>
+            {% endif %}
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+
+    <div class ="container">
+        {% block content %}
+        {% endblock %}
+    </div>
+    <br>
+    
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 col-lg-8 col-xs-12">
+          <p>
+            <a href="/static/CDB/Dbas_txt/Links.htm"><b><font color="blue">Useful Links</font></b></a>&nbsp;&nbsp;<b>|</b>&nbsp;&nbsp;
+            <a href="/static/CDB/Dbas_txt/updates.htm"><b><font color="blue">News & Updates</font></b></a> &nbsp;&nbsp;<b>|</b>&nbsp;&nbsp;
+            <a href="/static/CDB/Dbas_txt/Foreword.htm"><b><font color="blue">Foreword</font></b></a>&nbsp;&nbsp;<b>|</b>&nbsp;&nbsp;
+            <a href="/static/CDB/Dbas_txt/Intro.htm"><b><font color="blue">About the Database</font></b></a>
+          </p>
+        </div>
+	 <div class="col-md-4 col-lg-4 col-xs-12">
+	        <script>
+		  (function() {
+		    var cx = '000174099381020128554:0rb00c5p9dg';
+		    var gcse = document.createElement('script');
+		    gcse.type = 'text/javascript';
+		    gcse.async = true;
+		    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+		        '//cse.google.com/cse.js?cx=' + cx;
+		    var s = document.getElementsByTagName('script')[0];
+		    s.parentNode.insertBefore(gcse, s);
+		  })();
+		</script>
+		<gcse:search></gcse:search>
+	   </div>
+      </div>
+      
+     <div class = "row">
+         
+          <!-- div class="fb-page" data-href="https://www.facebook.com/thecadillacdatabase" data-tabs="timeline" data-width="180" data-height="70" data-small-header="false" data-adapt-container-width="false" data-hide-cover="false" data-show-facepile="true"><div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/thecadillacdatabase"><a href="https://www.facebook.com/thecadillacdatabase">The Cadillac Database</a></blockquote></div></div> -->
+            <div class ="col-md-2 col-lg-2 col-xs-12">
+              <a href="https://twitter.com/CadillacDB" class="twitter-follow-button" data-show-count="false">Follow @@CadillacDB</a>
+              <script>!function (d, s, id) { var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https'; if (!d.getElementById(id)) { js = d.createElement(s); js.id = id; js.src = p + '://platform.twitter.com/widgets.js'; fjs.parentNode.insertBefore(js, fjs); } }(document, 'script', 'twitter-wjs');</script>
+              <a href="https://twitter.com/share" class="twitter-share-button" data-via="CadillacDB">Tweet</a>
+              <script>!function (d, s, id) { var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https'; if (!d.getElementById(id)) { js = d.createElement(s); js.id = id; js.src = p + '://platform.twitter.com/widgets.js'; fjs.parentNode.insertBefore(js, fjs); } }(document, 'script', 'twitter-wjs');</script>
+            </div>
+            <div class =" col-md-4 col-lg-4 col-xs-12 likebox-wrapper">
+              <a class="fb-like" data-href="https://www.facebook.com/thecadillacdatabase" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></a>
+            </div>
+            <div align="center">
+              <span id="siteseal"><script async type="text/javascript" src="https://seal.godaddy.com/getSeal?sealID=E2DauHe9lYVXE36SXoDpZUrBdUZv2a3ro9NISzWY6xaMbreq7dQwGH0ekMLe"></script></span>
+            </div>
+          </div>
+          <div align="center"><p><font color="#00C"> @2016 - The Cadillac Database© </font></p></div>
+      </div>
+ <!--   </div> -->
+
+    <script>
+        $(window).load(function() {
+<!--        $(document).ready(function(){ -->
+           var allow = getCookie("modal-approved");
+           if (allow == "yes") {
+               $('#myModal').modal('hide');
+           } else {
+               $('#myModal').modal();
+           }
+           var resizeText = function () {
+               // Standard height, for which the body font size is correct
+               var preferredFontSize = 180; // %
+               var preferredSize = 1024 * 768;
+
+               var currentSize = $(window).width() * $(window).height();
+               var scalePercentage = Math.sqrt(currentSize) / Math.sqrt(preferredSize);
+               var newFontSize = preferredFontSize * scalePercentage;
+               $("body").css("font-size", newFontSize + '%');
+           };
+           $(window).bind('resize', function() {
+               resizeText();
+          }).trigger('resize');
+        });
+
+        $('.modal').on('show.bs.modal', function() {
+          $(this).show();
+          setModalMaxHeight(this);
+        });
+
+        $(window).resize(function() {
+          if ($('.modal.in').length != 0) {
+            setModalMaxHeight($('.modal.in'));
+          }
+        });
+    </script>
+
+</body>
+</html>

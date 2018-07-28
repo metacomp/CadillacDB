@@ -1,0 +1,22 @@
+{% extends 'EB/base.html' %}
+
+{% block title %} Register {% endblock %}
+
+{% block content %} 
+
+<div class ="empty-space">
+
+	<form method="post" action="."> {% csrf_token %}
+        <table class = "table">
+            {{ form.as_table }}
+        </table>
+        
+        <input type="submit" class = "btn btn-primary" value="Register" />
+       
+    </form>
+    <p> Already a member? <a type="link" class = "btn btn-primary" href="/login"> Login </a> </p>
+</div>
+
+
+
+{% endblock %}
