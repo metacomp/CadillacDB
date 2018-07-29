@@ -1,0 +1,101 @@
+{% extends 'EL/base.html' %}
+
+{% block title %}Survivor Cars{% endblock %}
+
+{% block content %}
+
+<div class="row">
+    <ul class="breadcrumb">
+        <li><a href="/">Home</a></li>
+        <li><a href="/{{chapterheading.superchapterid.superchapterid.superchapterid.chaptername|slugify}}/{{chapterheading.superchapterid.superchapterid.chaptername|slugify}}">{{ chapterheading.superchapterid.superchapterid.chaptername }}</a></li>
+        <li><a href="/{{chapterheading.superchapterid.superchapterid.superchapterid.chaptername|slugify}}/{{chapterheading.superchapterid.superchapterid.chaptername|slugify}}/{{chapterheading.superchapterid.chaptername|slugify}}">{{ chapterheading.superchapterid.chaptername }}</a></li>
+        <li><a class="active">{{ chapterheading.chaptername }}</a></li>
+    </ul>
+</div>
+
+<div class="row">
+    <div class="col-md-8 col-lg-8 col-sm-12 col-xs-12 text-center">
+		<ul class="pagination pagination-centered">
+
+	    <li><a href="?page=1"><<</a></li>
+	  	
+		{% if cars.has_previous %}
+	    	<li><a href="?page={{ cars.previous_page_number }}"><</a></li>
+	  	{% endif %}
+
+		{% for pg in cars.paginator.page_range %}
+			
+			{% if pg <= maxpage and pg >= minpage and pg != cars.number %}
+		      <li> <a href="?page={{ pg }}">{{pg}}</a></li>
+		   	{% elif pg == cars.number %}
+		      <li> <a href="?page={{ pg }}">{{pg}}</a></li>
+		   	{% endif %}
+		    
+		{% endfor %}
+
+		{% if cars.has_next %}
+		    <li><a href="?page={{ cars.next_page_number }}">></a></li>
+		{% endif %}
+
+		<li><a href="?page={{ endindex }}">>></a></li>
+
+		</ul>
+	</div>
+	<div class="dropdown col-md-1 col-lg-1 col-sm-4 col-xs-4" style="padding-top: 15px;padding-bottom: 10px">
+        <a href="#" data-toggle="dropdown" class="dropdown-toggle" type="button">Year <b class="caret"></b></a>
+        <ul class="dropdown-menu">
+            <li><a href="/survivors-registry/Eldorados/year-1953/">1953</a></li>
+        </ul>
+    </div>
+	<div class="col-md-2 col-lg-2 col-sm-5 col-xs-6" style="padding-top: 15px;padding-bottom: 10px">
+	<div class="input-group">
+		<input type="text" class="form-control" id= "pg_field" placeholder="Car #">
+	      <span class="input-group-btn">
+	      	{% if year = '1958' %}
+	        <a href='' onclick="this.href='?page='+(parseInt(document.getElementById('pg_field').value)-400)" class="btn btn-default" type="button">Go!</a>
+	        {% else %}
+	        <a href='' onclick="this.href='?page='+document.getElementById('pg_field').value" class="btn btn-default" type="button">Go!</a>
+	        {% endif %}
+	      </span>
+    </div>
+    </div>
+
+</div>
+
+	{% for car in cars.object_list %}
+
+	<div class = "row" >
+		{% if car.jalbumlink|length != 0 %}
+		<div class = "col-lg-6 col-md-6 col-sm-6 col-xs-12 myscrolldiv">
+			<style>.embed-container { position:relative; margin:0 auto; max-width:600px; padding-bottom:98%; padding-top:30px; height:0; overflow:hidden; max-width:100%; height:auto; } .embed-container iframe, .embed-container object, .embed-container embed { position:absolute; top:0; left:0; width:100%; height:100%; border:none; }</style>
+			<div class="embed-container"><iframe src="/{{car.jalbumlink}}" width="500" height="450" frameborder="0" allowfullscreen allowtransparency></iframe>
+			</div>
+		</div>
+		
+		<div class = "col-lg-6 col-md-6 col-sm-6 col-xs-12 myscrolldiv" style="background-color: #D6EAF8">
+		{% endif %}
+
+			<h2>{{car.title | safe}}</h2>
+			<p class="text-justify">{{car.content | safe}}</p>
+			
+			{% if updateboolean %}
+				<a target="_blank" href="carupdate/{{car.carnum}}/?page=1" class="btn btn-default" type="button">View Updates</a>
+			{% endif %}
+
+		</div>
+	</div>
+	
+	{% if cars.has_previous %}
+		<a class="carousel-control left mobile-scroll carousel-width" href="?page={{ cars.previous_page_number }}">
+			<span class="glyphicon glyphicon-chevron-left text-grey"></span>
+		</a> 
+	{% endif %}
+	{% if cars.has_next %}
+  		<a class="carousel-control right mobile-scroll carousel-width" href="?page={{ cars.next_page_number }}">
+  			<span class="glyphicon glyphicon-chevron-right text-grey"></span>
+  		</a>
+  	{% endif %}
+  		
+	{% endfor %}
+
+  {% endblock %}

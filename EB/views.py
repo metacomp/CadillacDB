@@ -1,7 +1,10 @@
+# -*- coding: utf-8 -*-
+
 from django.shortcuts import render, render_to_response, redirect
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger, InvalidPage
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import RequestContext, Context
+from django.core.files.base import ContentFile
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth import authenticate, login, logout
 from django.core.urlresolvers import reverse
@@ -11,7 +14,7 @@ from django.template.loader import get_template
 from django.core.mail import EmailMessage, send_mail, BadHeaderError
 from django.core.mail import EmailMultiAlternatives
 from email.MIMEImage import MIMEImage
-from .models import AuthUser, Cardetails, Chapters, Cardetailsupdate, Historicalinformation, HistoricalImages
+from .models import AuthUser, Cardetails, Chapters, Cardetailsupdate, Historicalinformation, HistoricalImages, Cardetailspending
 from .forms import RegistrationForm, ContactForm, ContributeForm
 from django.core.files.uploadedfile import SimpleUploadedFile
 from PIL import Image
@@ -62,25 +65,41 @@ def contact(request):
 def contribute(request):
     user = request.user
     if user.is_active : 
-	    if request.method == 'GET':
-	        form = ContributeForm()
-	    else:
-	        form = ContributeForm(request.POST, request.FILES)
-	        if form.is_valid():
-	            contact_name = form.cleaned_data['contact_name']
-	            from_email = form.cleaned_data['from_email']
-	            content = form.cleaned_data['content']
-	            imagefile = request.FILES['image']
-	            try:
-   		    	mail = EmailMessage("Someone Contributed an Image for Cadillac Database","Sender: "+contact_name+"\n"+"Message: "+content,from_email, ['mrcadillac@newcadillacdatabase.org'])
-    		    	mail.attach(imagefile.name, imagefile.read(), imagefile.content_type)
-	            	mail.send()
-	            	template = 'EB/thanks.html'
-	            except:
-	            	return HttpResponse('Attachment Error')
+        if request.method == 'GET':
+            form = ContributeForm()
+        else:
+            form = ContributeForm(request.POST, request.FILES)
+            if form.is_valid():
+                contact_name = form.cleaned_data['contact_name']
+                from_email = form.cleaned_data['from_email']
+                carid = form.cleaned_data['carid']
+                content = form.cleaned_data['content']
+                imagefile = request.FILES['image']
+                chapter = form.cleaned_data['chapter']
 
-        	    return render_to_response(template, {'form':form},context_instance=RequestContext(request))
-	    return render(request, "EB/contribute.html", {'form': form})
+                try:  
+                    #mail = EmailMessage("Someone Contributed an Image for Cadillac Database","Sender: "+car_choice+"\n"+"Message: "+content,from_email, ['ps3246@nyu.edu'])
+                    #mail.attach(imagefile.name, imagefile.read(), imagefile.content_type)
+                    #mail.send() Content=content,   ,  CarStatus='Survivor'
+                    caryear = carid.carid.split('_')[0]
+                    carnum = carid.carid.split('_')[1]
+                    obj = Cardetailspending(carid=carid,
+                                            content=content, 
+                                            caryear=caryear,
+                                            carnum=carnum,
+                                            status='Survivor',
+                                            createdby=contact_name,
+                                            chapterid=chapter
+                                            )
+                    obj.save()
+                    #file_content = ContentFile(imagefile.read())
+                    #obj.image.save(imagefile.name, file_content)
+                    template = 'EB/thanks.html'
+                except Exception as e: 
+                    return HttpResponse(e)
+
+            return render_to_response(template, {'form':form},context_instance=RequestContext(request))
+        return render(request, "EB/contribute.html", {'form': form})
     else:
         return redirect('/login')
 
@@ -123,12 +142,13 @@ def ebyear(requests):
     chapterheading = Chapters.objects.get(pk = 60)
     superchapheading = chapterheading.superchapterid.chaptername
     return render_to_response('EB/chapter_template.html', {'chapters':chapters, 'chapterheading':chapterheading, 'user': requests.user});
-	
+    
 
-def statistics(request):		
+def statistics(request):        
     #chapterheading = Chapters.objects.get(chapterid=61)
     chapterheading = Chapters.objects.get(pk = 61)
     superchapheading = chapterheading.superchapterid.chaptername
+
     EB57s = Decimal(Cardetails.objects.all().filter(caryear="1957", status__in=["Survivor","Parts"]).count())
     EB57s_Ratio = Decimal(EB57s/400)
     EB57s_Ratio = round(EB57s_Ratio,2)*100
@@ -159,6 +179,7 @@ def statistics(request):
                                                     'EBTotal': EBTotal, 'EBTotal_Ratio': EBTotal_Ratio,
                                                     'chapterheading': chapterheading,'user': request.user});
 
+
 def historicaltemplate(request, sectionorder):
     chapterheading = Chapters.objects.get(pk = 36)
     totsectionnum = Historicalinformation.objects.all().count()   
@@ -186,9 +207,9 @@ def cardisplay(request,year):
     curpage1958 = page+400
 
     if year == '1958':
-    	viewupdate = Cardetailsupdate.objects.filter(carnum= curpage1958).filter(caryear=year)
+        viewupdate = Cardetailsupdate.objects.filter(carnum= curpage1958).filter(caryear=year)
     else:
-    	viewupdate = Cardetailsupdate.objects.filter(carnum=curpage).filter(caryear=year)
+        viewupdate = Cardetailsupdate.objects.filter(carnum=curpage).filter(caryear=year)
     
     if viewupdate.exists():
         updateboolean = True
@@ -202,14 +223,14 @@ def cardisplay(request,year):
         cars = paginator.page(paginator.num_pages)
     
     if cars.number < 5:
-    	minpage = 1
-    	maxpage = (5 - cars.number) + 5 + cars.number
+        minpage = 1
+        maxpage = (5 - cars.number) + 5 + cars.number
     elif cars.number > (endindex - 5):
-    	minpage = cars.number - ((5 - (endindex - cars.number)) + 5)
-    	maxpage = endindex
+        minpage = cars.number - ((5 - (endindex - cars.number)) + 5)
+        maxpage = endindex
     else:
-	    minpage = cars.number - 5
-	    maxpage = cars.number + 5
+        minpage = cars.number - 5
+        maxpage = cars.number + 5
 
     return render_to_response('EB/car_template.html', { 'cars' : cars, 'chapterheading':chapterheading, 'endindex' : endindex, 'minpage':minpage, 'maxpage':maxpage, 'updateboolean':updateboolean, 'year':year, 'user': request.user}, context_instance=RequestContext(request));
 

@@ -1,0 +1,33 @@
+{% extends 'EL/base.html' %}
+
+{% block title %}{{ chapterheading.chaptername }}{% endblock %}
+
+{% block content %}
+
+<div class="row">
+    <ul class="breadcrumb">
+	    <li><a href="/">Home</a></li>
+	    <li><a href="/{{chapterheading.superchapterid.chaptername|slugify}}">{{ chapterheading.superchapterid.chaptername }}</a></li>
+	    <li><a href="active">{{ chapterheading.chaptername }}</a></li>
+    </ul>
+</div>
+
+<div class="row">
+    {% for chapter in chapters %}
+        <div class=" col-lg-4 blog-post" style="height:auto">
+            <a href="{{ chapter.url }}" class="blog-title">{{ chapter.chaptername }}</a>
+            <span></span>
+            <p>{{ chapter.description }}</p>
+        </div>
+    {% if forloop.counter|divisibleby:3 %} 
+        {% if not forloop.last %}        
+</div>
+
+<div class="row">
+        {% endif %}
+    {% endif %}
+{% endfor %}
+             
+{% endblock %}
+
+    

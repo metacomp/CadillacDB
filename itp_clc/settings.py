@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 """
 
 import os
+import logging
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -25,7 +26,7 @@ SECRET_KEY = 'd)bw-e&*if9ob$kt1ahrglz479$%x3k&9!!!v-zwx$jqhp)rbu'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1','localhost']
 
 
 # Application definition
@@ -38,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'EB',
+    'EL',
+    'V16',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -69,6 +72,17 @@ TEMPLATES = [
     },
 ]
 
+#PREPEND_WWW = True
+#SECURE_HSTS_SECONDS = ???
+#SECURE_CONTENT_TYPE_NOSNIFF = True
+#SECURE_BROWSER_XSS_FILTER = True
+#SECURE_SSL_REDIRECT = True
+##SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+#SESSION_COOKIE_SECURE = True
+#CSRF_COOKIE_SECURE = True
+#CSRF_COOKIE_HTTPONLY = True
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+
 WSGI_APPLICATION = 'itp_clc.wsgi.application'
 
 
@@ -83,7 +97,23 @@ DATABASES = {
         'PASSWORD':'database123%',
         'HOST':'127.0.0.1',
         'PORT':'3306'
-    }
+    },
+    'EL': {
+         'ENGINE': 'django.db.backends.mysql',
+         'NAME': 'EL_newcadillac',
+         'USER':'mycadillac',
+         'PASSWORD':'database123%',
+         'HOST':'127.0.0.1',
+         'PORT':'3306'
+     },
+    'V16': {
+         'ENGINE': 'django.db.backends.mysql',
+         'NAME': 'V16_newcadillac',
+         'USER':'mycadillac',
+         'PASSWORD':'database123%',
+         'HOST':'127.0.0.1',
+         'PORT':'3306'
+      },             
 }
 
 # URL of the login page.
@@ -140,3 +170,12 @@ STATICFILES_DIRS = [
 
 #STATIC_ROOT = 'C:/users/admin/workspace/itp_clc/static/'
 STATIC_URL = '/static/'
+
+DATABASE_ROUTERS = ['EL.routers.DatabaseAppsRouter', 'V16.routers.DatabaseAppsRouter']
+
+if DEBUG:
+    # will output to your console
+    logging.basicConfig(
+        level = logging.DEBUG,
+        format = '%(asctime)s %(levelname)s %(message)s',
+    )

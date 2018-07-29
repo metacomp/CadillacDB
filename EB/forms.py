@@ -1,5 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
+from .models import Chapters, Cardetails
 from django.utils.translation import ugettext_lazy as _
 
 
@@ -46,8 +47,10 @@ class ContributeForm(forms.Form):
         widget=forms.TextInput(attrs=dict(required=True, max_length=30)),
         label=_("Your Email")
     )
+    carid = forms.ModelChoiceField(Cardetails.objects.all().order_by('caryear'))
     content = forms.CharField(
         widget=forms.Textarea(attrs=dict(required=True, max_length=300000)),
-        label=_("Your Message")
+        label=_("Add Content")
     )
     image = forms.ImageField(required=True)
+    chapter = forms.ModelChoiceField(Chapters.objects.all().order_by('chaptername'))

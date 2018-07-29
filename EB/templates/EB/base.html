@@ -1,30 +1,20 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="google-site-verification" content="HsitsAvUbLjuba00-JlCIh_5556GzKua-2iW8pvustI" />
 
     <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="/static/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
     <!-- Optional theme -->
-    <link rel="stylesheet" href="/static/css/bootstrap-theme.min.css" />
+    <link rel="stylesheet" href="/static/css/bootstrap-theme.min.css">
     <!-- custom css -->
-    <link rel="stylesheet" href="/static/css/main.css" />
-    <link rel="stylesheet" href="/static/css/disclaimer.css" />
-<!--    <link href='http://fonts.useso.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'> -->
+    <link rel="stylesheet" href="/static/css/main.css">
+    <link rel="stylesheet" href="/static/css/disclaimer.css">
+  <!--   <link href='http://fonts.useso.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'> -->
 
     <title>{% block title %}{% endblock %}</title>
-    {% block head_favicon %}
-       <link rel="apple-touch-icon" sizes="180x180" href="/static/img/apple-touch-icon.png" />
-       <link rel="icon" type="image/png" href="/static/img/favicon-32x32.png" sizes="32x32" />
-       <link rel="icon" type="image/png" href="/static/img/favicon-16x16.png" sizes="16x16" />
-       <link rel="manifest" href="/static/img/manifest.json" />
-       <link rel="mask-icon" href="/static/img/safari-pinned-tab.svg" color="#5bbad5" />
-       <meta name="theme-color" content="#ffffff" />
-       <link rel="shortcut icon" href="/static/img/favicon.ico" type="image/x-icon" /> 
-<!--   <link rel="icon" type="image/png" href="/static/img/favicon.ico"> -->
-    {% endblock head_favicon %}
 
     {% block extrahead %}
     {% endblock %}
@@ -108,6 +98,67 @@
         }
       }
     </script>
+    <style>
+    	nav ul ul {
+			display: none;
+		}
+		
+		nav ul li:hover > ul {
+			display: block;
+		}
+		nav ul {
+			box-shadow: 0px 0px 9px rgba(0,0,0,0.15);
+			padding: 0 20px;
+			border-radius: 10px;  
+			list-style: none;
+			position: relative;
+			display: inline-table;
+		}
+			nav ul:after {
+		content: ""; clear: both; display: block;
+	}
+	nav ul li {
+		float: left;
+	}
+	nav ul li:hover a {
+		color: #fff;
+		text-decoration: none;
+	}
+	
+	nav ul li a {
+		display: block; padding: 5px 10px;
+		color: #757575; text-decoration: none;
+	}
+	
+	nav ul ul {
+		background: #ffffff; border-radius: 0px; padding: 0;
+	position: absolute; top: 100%; z-index: 999; font-size: 14px;
+	}
+	
+	nav ul ul li {
+		float: none; 
+		position: relative;
+		color: #000;
+	}
+	nav ul ul li a {
+			width: 100%;
+			white-space: nowrap;
+			padding: 3px 20px 3px 20px;
+			color: #333 !important;
+			font-weight: 400;
+			font-size: 20px;
+			clear: both;
+			font-family: "Helvetica Nueu", Helvetica, Arial, sans-serif;
+		}
+	nav ul ul li a:hover {
+				background: #e8e8e8;
+				color: #333;
+			}
+	
+	nav ul ul ul {
+	position: absolute; left: 100%; top:0;
+}	
+    </style>
 </head>
 
 <body>
@@ -140,7 +191,7 @@
             The information herein may include technical inaccuracies or typographical errors. Changes may periodically be made to the information and will be incorporated in new and regular revisions of this publication. The compiler of The Cadillac Database©   and The Museum & Research Center of the Cadillac & La Salle Club, Inc .  may add to, modify or delete information in these Web pages at any time without notice.
             The compiler of The Cadillac Database© and the Museum & Research Center of the Cadillac & La Salle Club, Inc . assume no responsibility for material created or published by third parties to which these World Wide Web pages are linked. By using this Website, you expressly relieve the Museum & Research Center of the Cadillac & La Salle Club, Inc . from any and all liability arising from your use of any third-party Websites linked to this one . By submitting material to any of our servers, for example by mail, fax or via World Wide Web pages, you agree to the following terms: (1) you make the material available knowing that it may be published, (2) you warrant that the material is fit for publication, (3) you agree to indemnify the compiler of The Cadillac Database © and the Museum & and Research Center of the Cadillac & La Salle Club, Inc . if any third party takes action against either of them in relation to the material you submit, (4) you agree not to take action against the compiler of The Cadillac Database© and the Museum & Research Center of the Cadillac & La Salle Club, Inc . if any third party takes action against either of them in relation to the material you submit, (5) by submitting material you warrant that you believe the compiler of The Cadillac Database© and the Museum & Research Center of the Cadillac & La Salle Club, Inc . may publish the material and incorporate it, or any concepts described in it, in their pages, without liability. </p>
             </div>
-              <div class="modal-footer" style="text-align:left">
+            <div class="modal-footer" style="text-align: center">
 <!--              <btn type="btn" class="button green" onclick="respond(true)"><img src="/static/img/tick.png">I Agree</btn> -->     
               <a href="#" class="button green close" onclick="respond(true)"><img src="/static/img/tick.png">I Agree</a>
             </div>
@@ -149,47 +200,92 @@
       </div>
     </div>
     <nav class="navbar navbar-inverse">
-      <div class="container">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="/">The Cadillac Database©<span class="sr-only">(current)</span></a>
-        </div>
-
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-          <ul class="nav navbar-nav">
-            <li><a href="/static/CDB/Dbas_txt/Intro.htm">About</a></li>
-            <li><a href="/static/CDB/Dbas_txt/updates.htm">Important Info</a></li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Chapters <span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                <li><a href="/static/CDB/Dbas_txt/Preface.htm">Preface</a></li>
-                <li><a href="/historical-information">Historical Information</a></li>
-                <li><a href="/survivors-registry">Survivors Registry</a></li>
-                <li><a href="/static/CDB/Dbas_txt/Phot_ndx.htm">Photo Pages</a></li>
-                <li><a href="/static/CDB/Dbas_txt/Lit_ndx.htm">Sales Literature</a></li>
-                <!--<li role="separator" class="divider"></li>
-                <li class="dropdown-header">Featured</li>-->
-                <li><a href="/static/CDB/Dbas_txt/lelaward.htm">Awards and Recognitions</a></li> 
-<!--            <li class="dropdown-submenu">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Test<span class="caret"></span></a>
-                  <ul class="dropdown-menu">
-                    <li><a href="/static/CDB/Dbas_txt/Preface.htm">Test1</a></li>
-                    <li><a href="/static/CDB/Dbas_txt/lelaward.htm">Test2</a></li> 
-                  </ul>
-                </li> -->
-              </ul>
-            </li>
-          </ul>
-
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href="/contact">Contact Us</a></li>
+		<ul>
+			<li><a href="/">The Cadillac Database &copy</a></li>
+			<li><a href="/flipbook">About</a></li>
+			<li><a href="/update">Important Info
+			<span class="caret1"></span>
+			</a>
+				<ul>
+					<li><a href="/preface">Preface</a></li>
+					<li><a href="/foreword">Foreword</a></li>
+					<li><a href="/static/CDB/Dbas_txt/lelaward.htm">Awards</a></li>
+					<li><a href="/update">News and Updates</a></li>
+					<li><a href="/about">About the database</a></li>
+				</ul>
+			</li>
+			<li><a href="#">Chapters <span class="caret1"></span></a>
+				<ul>
+					<li><a href="/static/CDB/Dbas_txt/Coatarms.htm">Cadillac Crest Story</a></li>
+					<li><a href="/historical-information">Historical Information</a></li>
+    				<li><a href="/static/CDB/Dbas_txt/Adindex.htm">Cadillac advertisements</a></li>
+    				<li><a href="/static/CDB/Dbas_txt/Adindex.htm">La Salle advertisements</a></li>
+    				<li><a href="#">Cadillac Merchandising Material 
+    				<span class="caret"></span></a>
+    					<ul>
+    						<li><a href="#">Catalogs/Sales Literature</a></li>
+    						<li><a href="#">Folders/Sales Literature</a></li>
+    						<li><a href="/static/CDB/Dbas_txt/Flm_strp.htm">Film Strips</a></li>
+    					</ul>
+    				</li>
+    				<li><a href="#">Cadillac-LaSalle</a></li>
+    				<li><a href="/static/CDB/Dbas_txt/Drm_ndex.htm">Dream, Cars on Cadillac and LaSalle Chasis</a></li>
+    				<li><a href="#">Cadillac of Stars and Personalities</a></li>
+    				<li><a href="/static/CDB/Dbas_txt/photoyin.htm">Cadillac Toys and Scale Models</a></li>
+    				<li><a href="/static/CDB/Dbas_txt/Phot_ndx.htm">Photo Pages
+    				<span class="caret"></span></a>
+	    				<ul>
+	    					<li><a href="#">Cadillac Allante</a></li>
+	    					<li><a href="#">Cimarron</a></li>
+	    					<li><a href="#">Seville</a></li>
+	    				</ul>
+    				</li>
+    				<li><a href="/survivors-registry"> Survivor Registry
+    				<span class="caret"></span></a>
+    					<ul>
+		    				<li><a href="#">Cadillac V16 models</a></li>
+		            <li><a href="#">Eldorados</a></li>
+                <li><a href="/survivors-registry/eldorado-broughams/">Eldorado Brougham (1950-1960)</a></li>
+                <li><a href="/survivors-registry/professional-cars/">Professional cars on Cadillac Chasis</a></li>
+                <li><a href="/survivors-registry/1974-1976-fleetwood-talisman/">1974-1976 Fleetwood Talismans</a></li>
+	    				</ul>
+    				</li>
+    				<li><a href="#"> Related Topics<span class="caret"></span></a>
+    					<ul>
+		    				<li><a href="#">Cadillac Art & artifacts
+		    				<span class="caret"></span></a>
+			    				<ul>
+				    				<li><a href="#">Wheel Covers</a></li>
+				                    <li><a href="#">Horn Buttons</a></li>
+				                    <li><a href="#">Stand-up Mascots</a></li>
+				                    <li><a href="#">Cadillac Insignia</a></li>
+				                    <li><a href="#">Artistic paintings and photos</a></li>
+				                    <li><a href="#">Miscellaneous artifacts</a></li>
+			    				</ul>
+		    				</li>
+		                    <li><a href="#">Cadillac Engines</a></li>
+		                    <li><a href="#">Cadillac Books</a></li>
+		                    <li><a href="#">Aphorisms</a></li>
+		                    <li><a href="#">Cadillac Fact Finder</a></li>
+		                    <li><a href="#">The Fisher Coach</a></li>
+		                    <li><a href="#">Cadillac Styling Codes</a></li>
+		                    <li><a href="#">Millionth Models</a></li>
+		                    <li><a href="#">Cadillacs in the Movies</a></li>
+		                    <li><a href="#">Cadillac in Songs</a></li>
+		                    <li><a href="#">Cadillac on Postage Stamps</a></li>
+		                    <li><a href="/static/CDB/Dbas_txt/59_misc.htm">Follies of Fifty-Nine</a></li>
+		                    <li><a href="/static/CDB/Dbas_txt/59shark.htm">"SHARK 59"</a></li>
+		                    <li><a href="#">Cadillacs Fun & Miscellany</a></li>
+		                    <li><a href="#">Yearly Specifications</a></li>
+		                    <li><a href="#">Technical Articles</a></li>
+		                    <li><a href="#">Links to outside sources</a></li>
+	    				</ul>
+    				</li>
+				</ul>
+			</li>
+		</ul>
+		<ul class="nav navbar-nav navbar-right">
+        	<li><a href="/contact">Contact Us</a></li>
             {% if user.username == "" %}
             <li><a href="/login">Login</a></li>
             {% else %}
@@ -200,10 +296,8 @@
               </ul>
             </li>
             {% endif %}
-          </ul>
-        </div><!-- /.navbar-collapse -->
-      </div><!-- /.container-fluid -->
-    </nav>
+       </ul>
+	</nav>
 
     <div class ="container">
         {% block content %}
@@ -216,9 +310,9 @@
         <div class="col-md-8 col-lg-8 col-xs-12">
           <p>
             <a href="/static/CDB/Dbas_txt/Links.htm"><b><font color="blue">Useful Links</font></b></a>&nbsp;&nbsp;<b>|</b>&nbsp;&nbsp;
-            <a href="/static/CDB/Dbas_txt/updates.htm"><b><font color="blue">News & Updates</font></b></a> &nbsp;&nbsp;<b>|</b>&nbsp;&nbsp;
-            <a href="/static/CDB/Dbas_txt/Foreword.htm"><b><font color="blue">Foreword</font></b></a>&nbsp;&nbsp;<b>|</b>&nbsp;&nbsp;
-            <a href="/static/CDB/Dbas_txt/Intro.htm"><b><font color="blue">About the Database</font></b></a>
+            <a href="/update"><b><font color="blue">News & Updates</font></b></a> &nbsp;&nbsp;<b>|</b>&nbsp;&nbsp;
+            <a href="/sitemap"><b><font color="blue">Sitemap</font></b></a>&nbsp;&nbsp;<b>|</b>&nbsp;&nbsp;
+            <a href="/about"><b><font color="blue">About the Database</font></b></a>
           </p>
         </div>
 	 <div class="col-md-4 col-lg-4 col-xs-12">
@@ -250,22 +344,18 @@
             <div class =" col-md-4 col-lg-4 col-xs-12 likebox-wrapper">
               <a class="fb-like" data-href="https://www.facebook.com/thecadillacdatabase" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></a>
             </div>
-            <div align="center">
-              <span id="siteseal"><script async type="text/javascript" src="https://seal.godaddy.com/getSeal?sealID=E2DauHe9lYVXE36SXoDpZUrBdUZv2a3ro9NISzWY6xaMbreq7dQwGH0ekMLe"></script></span>
-            </div>
           </div>
           <div align="center"><p><font color="#00C"> @2016 - The Cadillac Database© </font></p></div>
       </div>
- <!--   </div> -->
+    </div>
 
     <script>
-        $(window).load(function() {
-<!--        $(document).ready(function(){ -->
+        $(document).ready(function(){
            var allow = getCookie("modal-approved");
            if (allow == "yes") {
                $('#myModal').modal('hide');
            } else {
-               $('#myModal').modal();
+           $('#myModal').modal();
            }
            var resizeText = function () {
                // Standard height, for which the body font size is correct
@@ -277,7 +367,7 @@
                var newFontSize = preferredFontSize * scalePercentage;
                $("body").css("font-size", newFontSize + '%');
            };
-           $(window).bind('resize', function() {
+          $(window).bind('resize', function() {
                resizeText();
           }).trigger('resize');
         });

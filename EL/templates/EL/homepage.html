@@ -1,0 +1,73 @@
+{% extends 'EL/base.html' %}
+
+{% block title %} Home {% endblock %}
+
+
+{% block content %} 
+<div class="row">
+
+    <div class="col-xs-12 col-md-6">
+        <img class="home-image" src="/static/img/intr2002.jpg" id="cadillac-database-home" style="max-width:100%; height:auto" /alt="">
+        <!-- img class="mobile-home-image" src="/static/img/intr2002_home.jpg" style="max-width:100%; height:auto"  id="cadillac-database-home" /alt="" -->
+    </div>
+
+    <div class="col-xs-12 col-md-6">
+<!--    	<br> -->
+        <h2><font color="#00C"> The Cadillac Database © </font></h2>
+        <hr>
+        <p class="text-justify"><font color="#00C"> {{ chapterheading.description }}</font></p>
+        
+        <div class="row">
+            <div class = "col-xs-6 col-lg-6">
+            	<a class="btn btn-default btn-responsive" href="/static/CDB/Dbas_txt/indx2012.htm" role="button"> <font color="#00C">Old Database Site </font></a>
+            </div>
+            <div class = "col-xs-6 col-lg-6">
+            	<a class="btn btn-default btn-responsive" href="http://www.cadillaclasalleclub.org/" role="button"> <font color="#00C">Cadillac & La Salle Club </font></a>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<br>
+
+<div class="well text-center"><font color="#00C">Welcome to the New Cadillac Database</font></div>
+
+
+<div class="row">
+  {% for chapter in chapters %}
+    <div class="col-lg-3 col-xs-3">
+      <h4><font color="#00C">{{ chapter.chaptername}}</font></h4>
+      <p><font color="#00C">{{ chapter.description }}</font></p>
+      <!-- <p><a class="btn btn-default btn-responsive" href="{{chapter.chaptername|slugify}}" role="button"><font color="#00C">Find out more &raquo;</font></a></p> -->
+      <p><a class="btn btn-default btn-responsive" href="{{ chapter.url }}" role="button"><font color="#00C">Find out more &raquo;</font></a></p> 
+    </div> 
+  {% endfor %}
+</div>
+
+<br>
+
+<div class="well text-center"><font color="#00C">Please Help Make a Better Cadillac Database</font></div>
+
+<div class="row">
+    <div class="col-xs-6 col-lg-3">
+      <h4><font color="#00C">Contribute Materials</font></h4>
+      <p><font color="#00C">Register to become a member to donate materials that fall within our collecting focus</font></p>
+      <p><a class="btn btn-default btn-responsive" href="/contribute" role="button"><font color="#00C">View details &raquo;</font></a></p>
+      </div>
+      <div class="col-xs-6 col-lg-3">
+      <h4><font color="#00C">Donate</font></h4>
+      <p><font color="#00C">Make charitable donations to support our website</font></p>
+        <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+            <input type="hidden" name="cmd" value="_s-xclick">
+            <input type="hidden" name="hosted_button_id" value="NKQJX8FQ48VES">
+            <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+            <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+        </form>
+    </div>
+</div>
+
+<div id=“sitelock_shield_logo” class=“fixed_btm” style=“bottom:0;position:fixed;_position:absolute;right:0;”>
+<a href=“https://www.sitelock.com/verify.php?site=newcadillacdatabase.org” onclick=“window.open(‘https://www.sitelock.com/verify.php?site=newcadillacdatbase.org’,'SiteLock',width=600,height=600,left=160,top=170');return false;”><img alt=“SiteLock” title=“SiteLock” src=“//shield.sitelock.com/shield/newcadillacdatabase.org”></a></div>
+
+{% endblock %}

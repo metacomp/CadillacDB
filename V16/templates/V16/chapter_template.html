@@ -1,0 +1,41 @@
+{% extends 'V16/base.html' %}
+
+{% block title %}{{ chapterheading.chaptername }}{% endblock %}
+
+{% block content %}
+
+<div class="row">
+        <ul class="breadcrumb">
+            <li><a href="/">Home</a></li>
+            {% if heading in chapterheading.superchapterid %}
+            <li><a href="">{{ heading.superchapterid.chaptername }}</a></li>
+            {% endif %}
+            <li><a class="active">{{ chapterheading.chaptername }}</a></li>
+        </ul>
+</div>
+
+{% if chapterheading.introduction %} 
+{% endif %}
+
+<div class="row">
+    {% for chapter in chapters %}
+        <div class=" col-lg-4 blog-post">
+            <a href= "{{ chapter.url }}"><img src="/static/img/chapterimgs/{{chapter.imagepath}}"></a>
+            <a href="{{ chapter.url }}" class="blog-title">{{ chapter.chaptername }}</a>
+            {% comment "the below url can be implemented dynamically without the help of db, once fully done" %}
+            <a href="{{ chapter.chaptername }}" class="blog-title">{{ chapter.chaptername }}</a>
+            {% endcomment %}
+            <span></span>
+            <p>{{ chapter.description }}</p>
+        </div>
+    {% if forloop.counter|divisibleby:3 %} 
+        {% if not forloop.last %}        
+</div>
+<div class="row">
+        {% endif %}
+    {% endif %}
+{% endfor %}
+             
+{% endblock %}
+
+    

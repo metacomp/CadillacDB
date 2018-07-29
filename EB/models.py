@@ -8,9 +8,13 @@
 
 from __future__ import unicode_literals
 
-from __future__ import unicode_literals
-
 from django.db import models
+from django.core.validators import MaxValueValidator
+
+CARDETAILSTATUS = (
+        (0, 'Pending'),
+        (1, 'Approved')
+)
 
 
 class Chapters(models.Model):
@@ -82,6 +86,27 @@ class Carimages(models.Model):
     class Meta:
         db_table = 'CarImages'
 
+class Cardetailspending(models.Model):
+    carid = models.CharField(db_column ='id', max_length=30, primary_key=True)
+    caryear = models.IntegerField(db_column='CarYear')  # Field name made lowercase.
+    carnum = models.IntegerField(db_column='CarNum')  # Field name made lowercase.
+    title = models.CharField(db_column='Title', max_length=30, blank=True, null=True)  # Field name made lowercase.
+    content = models.TextField(db_column='Content', blank=True, null=True)  # Field name made lowercase.
+    createdby = models.CharField(db_column='CreatedBy', max_length=50, blank=True, null=True)  # Field name made lowercase.
+    createdate = models.DateTimeField(db_column='CreateDate', blank=True, null=True)  # Field name made lowercase.
+    lastupdatedate = models.DateTimeField(db_column='LastUpdateDate', blank=True, null=True)  # Field name made lowercase.
+    jalbumlink = models.CharField(db_column='JAlbumLink', max_length=100, blank=True, null=True)  # Field name made lowercase.
+    status = models.CharField(db_column='CarStatus', max_length=30, blank=True, null=True) # Field name made lowercase.
+    chapterid = models.CharField(db_column='ChapterID', max_length=50, blank=True, null=True)  # Field name made lowercase.
+    approved = models.IntegerField(choices=CARDETAILSTATUS, default=0, validators=[MaxValueValidator(1)])
+    
+    def __str__(self):
+        return self.carid
+
+    class Meta:
+        db_table = 'CarDetailsPending'
+        ordering = ['caryear', 'carnum']
+
 
 class Historicalinformation(models.Model):
     chapterid = models.ForeignKey(Chapters, db_column='ChapterID')  # Field name made lowercase.
@@ -107,7 +132,7 @@ class HistoricalImages(models.Model):
     imageid = models.AutoField(db_column='ImageID', primary_key=True)  # Field name made lowercase.
     
     def __str__(self):
-        return self.imageid
+        return str(self.imageid)
         
     class Meta:
         db_table = 'Historical_Images'

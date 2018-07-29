@@ -1,0 +1,96 @@
+{% extends 'V16/base.html' %}
+
+{% block title %} Survivors Statistics {% endblock %}
+
+{% block content %}
+
+<div class="row">
+        <ul class="breadcrumb">
+            <li><a href="/">Home</a></li>
+        <li><a href="/{{chapterheading.superchapterid.superchapterid.superchapterid.chaptername|slugify}}/{{chapterheading.superchapterid.superchapterid.chaptername|slugify}}">{{ chapterheading.superchapterid.superchapterid.chaptername }}</a></li>
+        <li><a href="/{{chapterheading.superchapterid.superchapterid.superchapterid.chaptername|slugify}}/{{chapterheading.superchapterid.superchapterid.chaptername|slugify}}/{{chapterheading.superchapterid.chaptername|slugify}}">{{ chapterheading.superchapterid.chaptername }}</a></li>
+        <li><a class="active">{{ chapterheading.chaptername }}</a></li>
+        </ul>
+</div>
+
+{% if chapterheading.introduction %} 
+{% endif %}
+
+<div class="row">
+
+<table class="table" border="3" cellpadding="3" cellspacing="3" width="64%"
+  bgcolor="#D9FFFE" bordercolor="#800000">
+    <tr>
+      <td width="140%" colspan="3"><big><big><strong><p align="center"><font color="#800000">&nbsp;</p>
+      </font></strong></big></big><p align="center"><strong><font color="#800080"><big>Number of
+      Actual Known Survivors</big></font><sup><font color="#FF0000">1</font></sup><font
+      color="#800080"><br>
+      <big>[ summary table ]</big></font></strong></p>
+      <p align="center">&nbsp;</td>
+    </tr>
+    <tr>
+      <td width="80%"><p align="center"><font color="#800000"><big><strong>Year</strong></big></font></td>
+      <td width="33%"><p align="center"><font color="#800000"><big><strong>Survivors</strong></big></font></td>
+      <td width="28%"><font color="#800000"><big><strong><p align="center"><big>%</big></strong></big></font></td>
+    </tr>
+    <tr>
+      <td width="80%" align="center"><big><font color="#0000A0"><strong>1957</strong></font></big></td>
+      <td width="33%"><p align="center"><font color="#0000A0"><strong>278</strong></font></td>
+      <td width="28%" align="right"><font color="#0000A0"><strong><p align="center">69.5</strong></font></td>
+    </tr>
+    <tr>
+      <td width="80%" align="center"><big><font color="#0000A0"><strong>1958</strong></font></big></td>
+      <td width="33%"><p align="center"><font color="#0000A0"><strong>203</strong></font></td>
+      <td width="28%" align="right"><font color="#0000A0"><strong><p align="center">66.8</strong></font></td>
+    </tr>
+    <tr>
+      <td width="80%" align="center"><font color="#800000"><big><strong>Total 1957-58</strong></big></font></td>
+      <td width="33%" align="center"><p align="center"><font color="#800000"><big><strong>481</strong></big></font></td>
+      <td width="28%" align="center"><big><strong><p align="center"><font color="#800000">68.3</font></strong></big></td>
+    </tr>
+    <tr>
+      <td width="80%" align="center"><strong><big><font color="#0000A0">1959</font></big></strong></td>
+      <td width="33%" align="right"><font face="Times New Roman"><strong><p align="center"><font
+      color="#0000A0">43</font></strong></font></td>
+      <td width="28%" align="right"><font face="Times New Roman"><strong><p align="center"><font
+      color="#0000A0">43.4</font></strong></font></td>
+    </tr>
+    <tr>
+      <td width="80%" align="center"><strong><big><font color="#0000A0">1960</font></big></strong></td>
+      <td width="33%" align="right"><font face="Times New Roman"><strong><p align="center"><font
+      color="#0000A0">54</font></strong></font></td>
+      <td width="28%" align="right"><font face="Times New Roman"><strong><p align="center"><font
+      color="#0000A0">53.5</font></strong></font></td>
+    </tr>
+    <tr>
+      <td width="80%" align="center"><strong><big><font color="#800000">Total 1959-60</font></big></strong></td>
+      <td width="33%"><font face="Times New Roman"><big><strong><p align="center"><font
+      color="#800000">97</font></strong></big></font></td>
+      <td width="28%"><font face="Times New Roman"><big><strong><p align="center"><font
+      color="#800000">48.5</font></strong></big></font></td>
+    </tr>
+    <tr>
+      <td width="80%" align="center"><strong><big><big><big><font color="#800080">Grand Total</font></big></big></big></strong></td>
+      <td width="33%" align="right"><font face="Times New Roman"><big><strong><p align="center"><big><big><font
+      color="#800080">578</font></big></big></strong></big></font></td>
+      <td width="28%" align="right"><font face="Times New Roman"><big><strong><p align="center"><big><big><font
+      color="#800080">63.9%</font></big></big></strong></big></font></td>
+    </tr>
+    <tr>
+      <td width="141%" align="center" colspan="3"><blockquote>
+        <p align="left"><font face="Times New Roman"><strong><br>
+        <small><font color="#FF0000">Nota</font>:&nbsp; Even though 704 <em>Eldorado Brougham</em>
+        engines and chassis were built in 1957 and 1958, there were only 703 bodies. One of them
+        was used on&nbsp; TWO cars and got TWO separate body tags - #2 in 1957 became #475 in
+        1958!</small><br>
+        </strong></font></p>
+      </blockquote>
+      </td>
+    </tr>
+  </table>     
+</div>
+
+             
+{% endblock %}
+
+    

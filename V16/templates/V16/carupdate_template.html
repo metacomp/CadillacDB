@@ -1,0 +1,77 @@
+{% extends 'V16/base.html' %}
+
+{% block title %}Survivor Cars - Updates{% endblock %}
+
+{% block content %}
+
+<div class="row">
+    <ul class="breadcrumb">
+        <li><a href="/">Home</a></li>
+        <li><a href="/{{chapterheading.superchapterid.superchapterid.superchapterid.chaptername|slugify}}/{{chapterheading.superchapterid.superchapterid.chaptername|slugify}}">{{ chapterheading.superchapterid.superchapterid.chaptername }}</a></li>
+        <li><a href="/{{chapterheading.superchapterid.superchapterid.superchapterid.chaptername|slugify}}/{{chapterheading.superchapterid.superchapterid.chaptername|slugify}}/{{chapterheading.superchapterid.chaptername|slugify}}">{{ chapterheading.superchapterid.chaptername }}</a></li>
+        <li><a class="active">{{ chapterheading.chaptername }}</a></li>
+    </ul>
+</div>
+
+<div class="row">
+    <div class="col-md-10 col-lg-10 col-sm-10 text-center">
+		<ul class="pagination pagination-centered">
+
+	    <li><a href="?page=1"><<</a></li>
+	  	
+		{% if updates.has_previous %}
+	    	<li><a href="?page={{ cars.previous_page_number }}"><</a></li>
+	  	{% endif %}
+
+		{% for pg in updates.paginator.page_range %}
+			{% if pg <= maxpage and pg >= minpage and pg != updates.number %}
+		      <li> <a href="?page={{ pg }}">{{pg}}</a></li>
+		   	{% elif pg == updates.number %}
+		      <li> <a href="?page={{ pg }}">{{pg}}</a></li>
+		   	{% endif %}
+		    
+		{% endfor %}
+
+		{% if updates.has_next %}
+		    <li><a href="?page={{ updates.next_page_number }}">></a></li>
+		{% endif %}
+
+		<li><a href="?page={{ endindex }}">>></a></li>
+
+		</ul>
+	</div>
+
+</div>
+
+	{% for update in updates.object_list %}
+
+	<div class = "row" >
+		{% if car.jalbumlink|length != 0 %}
+		<div class = "col-lg-6 col-md-6 col-sm-6 col-xs-12 myscrolldiv">
+			<style>.embed-container { position:relative; margin:0 auto; max-width:600px; padding-bottom:98%; padding-top:30px; height:0; overflow:hidden; max-width:100%; height:auto; } .embed-container iframe, .embed-container object, .embed-container embed { position:absolute; top:0; left:0; width:100%; height:100%; border:none; }</style>
+			<div class="embed-container"><iframe src="/{{update.jalbumlink}}" width="500" height="450" frameborder="0" allowfullscreen allowtransparency></iframe>
+			</div>
+		</div>
+		
+		<div class = "col-lg-6 col-md-6 col-sm-6 col-xs-12 myscrolldiv">
+		{% endif %}
+
+			<h2>{{update.title}}</h2>
+			<p class="text-justify">{{update.content | safe}}</p>
+			
+		
+		</div>
+	</div>
+		
+
+	{% if updates.has_previous %}
+		<a class="carousel-control left carousel-width mobile-scroll" href="?page={{ cars.previous_page_number }}"><span class="glyphicon glyphicon-chevron-left text-grey"></span></a> 
+	{% endif %}
+
+	{% if updates.has_next %}
+  		<a class="carousel-control right carousel-width mobile-scroll" href="?page={{ cars.next_page_number }}"><span class="glyphicon glyphicon-chevron-right text-grey"></span></a>
+  	{% endif %}
+
+	{% endfor %}
+
+  {% endblock %}
